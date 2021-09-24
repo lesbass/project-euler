@@ -26,4 +26,29 @@ class ProblemSolverTest extends FunSuite {
 
     assert(ProblemSolver.problem5(10) === 2520)
   }
+
+  test(
+    """6 - The sum of the squares of the first ten natural numbers is,
+      |
+      |The square of the sum of the first ten natural numbers is,
+      |
+      |Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is .
+      |
+      |Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.""".stripMargin
+  ) {
+
+    assert(ProblemSolver.problem6(10) === 2640)
+  }
+
+  test(
+    """21 - Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).
+      |If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and each of a and b are called amicable numbers.
+      |
+      |For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; therefore d(220) = 284. The proper divisors of 284 are 1, 2, 4, 71 and 142; so d(284) = 220.
+      |
+      |Evaluate the sum of all the amicable numbers under 10000.""".stripMargin
+  ) {
+
+    assert(ProblemSolver.problem21(1000) === 504)
+  }
 }
