@@ -1,3 +1,5 @@
+import scalaz.Scalaz._
+
 import scala.language.postfixOps
 
 object ProblemSolver {
@@ -8,7 +10,6 @@ object ProblemSolver {
     )
 
   def problem2(n: Int): Int = {
-
     def run(limit: Int)(prevNumber: Int, currNumber: Int): Int = {
       def checkEven(n: Int) = if (n % 2 == 0) n else 0
 
@@ -41,9 +42,16 @@ object ProblemSolver {
   def problem21(n: Int): Int = {
     def isAmicable(n: Int) = {
       def getSumOfDivisors(n: Int) = (1 to n / 2).filter(n % _ == 0).sum
-      List(getSumOfDivisors(n))
-        .filter(_ != n)
-        .exists(x => n == getSumOfDivisors(x))
+      def notTheSame(x: Int) =
+        if (x != n) { Some(x) }
+        else { None }
+      def checkEqualsSumOfDivisorsDivisors(x: Option[Int]) =
+        x match {
+          case Some(a) => n == (a |> getSumOfDivisors)
+          case _       => false
+        }
+
+      n |> getSumOfDivisors |> notTheSame |> checkEqualsSumOfDivisorsDivisors
     }
 
     (1 to n).filter(isAmicable).sum
