@@ -26,9 +26,11 @@ object ProblemSolver {
   }
 
   def problem5(n: Int): Int = {
-    def checkEvenlyDivisible(n: Int, limit: Int): Boolean =
+    def checkEvenlyDivisible(limit: Int)(n: Int): Boolean =
       !(1 to limit).exists(n == 0 || n % _ != 0)
 
-    (0 to Int.MaxValue by n).find(checkEvenlyDivisible(_, n)).getOrElse(-1)
+    def checkEvenlyDivisibleWithLimit = checkEvenlyDivisible(n) _
+
+    (0 to Int.MaxValue by n).find(checkEvenlyDivisibleWithLimit).getOrElse(-1)
   }
 }
