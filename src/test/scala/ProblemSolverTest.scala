@@ -18,4 +18,13 @@ class ProblemSolverTest extends FunSuite {
 
     assert(ProblemSolver.problem2(100) === 188)
   }
+
+  test(
+    """5 - 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+      |What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?""".stripMargin
+  ) {
+
+    assert(ProblemSolver.problem5(10) === 2520)
+    assert(ProblemSolver.problem5(20) === 232792560)
+  }
 }

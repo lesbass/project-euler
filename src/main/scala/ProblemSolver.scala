@@ -1,4 +1,6 @@
+import scala.collection.mutable.ListBuffer
 import scala.language.postfixOps
+import scala.runtime.Nothing$
 
 object ProblemSolver {
 
@@ -21,5 +23,12 @@ object ProblemSolver {
     def runWithLimit = run(n) _
 
     runWithLimit(1, 1)
+  }
+
+  def problem5(n: Int): Int = {
+    def checkEvenlyDivisible(n: Int, limit: Int): Boolean =
+      !(1 to limit).exists(n == 0 || n % _ != 0)
+
+    (0 to Int.MaxValue by n).find(checkEvenlyDivisible(_, n)).getOrElse(-1)
   }
 }
