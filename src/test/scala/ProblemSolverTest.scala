@@ -25,6 +25,5 @@ class ProblemSolverTest extends FunSuite {
   ) {
 
     assert(ProblemSolver.problem5(10) === 2520)
-    assert(ProblemSolver.problem5(20) === 232792560)
   }
 }
