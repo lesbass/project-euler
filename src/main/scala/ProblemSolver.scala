@@ -10,27 +10,27 @@ object ProblemSolver {
     )
 
   def problem2(n: Int): Int = {
-    def run(limit: Int)(prevNumber: Int, currNumber: Int): Int = {
+    implicit val limit: Int = n
+
+    def run(prevNumber: Int, currNumber: Int)(implicit limit: Int): Int = {
       def checkEven(n: Int) = if (n % 2 == 0) n else 0
 
       def runInside(sum: Int) =
-        checkEven(sum) + runWithLimit(currNumber, sum)
+        checkEven(sum) + run(currNumber, sum)
 
       if (currNumber > limit) 0 else runInside(prevNumber + currNumber)
     }
 
-    def runWithLimit = run(n) _
-
-    runWithLimit(1, 1)
+    run(1, 1)
   }
 
   def problem5(n: Int): Int = {
-    def checkEvenlyDivisible(limit: Int)(n: Int) =
+    implicit val limit: Int = n
+
+    def checkEvenlyDivisible(n: Int)(implicit limit: Int) =
       !(1 to limit).exists(n == 0 || n % _ != 0)
 
-    def checkEvenlyDivisibleWithLimit = checkEvenlyDivisible(n) _
-
-    (0 to Int.MaxValue by n).find(checkEvenlyDivisibleWithLimit).getOrElse(-1)
+    (0 to Int.MaxValue by n).find(checkEvenlyDivisible).getOrElse(-1)
   }
 
   def problem6(n: Int): Long = {
